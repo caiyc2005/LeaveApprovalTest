@@ -34,3 +34,48 @@ LeaveApproval/
 
 
 
+## 技术栈
+
+- **后端框架**: ASP.NET MVC
+- **前端**: Razor + jQuery + Bootstrap
+- **数据库**: SQL Server
+- **架构模式**: 多层架构（表现层 → 业务层 → 数据层）
+
+
+
+## 功能模块
+
+基于 Controller 分析，系统包含以下模块：
+
+| Controller           | 功能                     |
+| -------------------- | ------------------------ |
+| AccountController    | 用户登录、注册、身份认证 |
+| LeaveController      | 请假申请、查看、撤销     |
+| DepartmentController | 部门管理                 |
+| PositionController   | 职位管理                 |
+| RoleController       | 角色管理                 |
+| StaffController      | 员工管理                 |
+
+## 快速开始
+
+### 环境要求
+
+- Visual Studio 2022+
+- .NET Core
+- SQL Server 2012+
+
+### 运行步骤
+
+1. 用 Visual Studio 打开 `LeaveApproval.sln` 解决方案
+2. 还原 NuGet 包（右键解决方案 → 还原 NuGet 包）
+3. 修改数据库连接字符串（在 `LeaveApproval.MvcWeb` 的 `appsettings.json` 中）
+4. 按 `F5` 运行项目
+
+## 配置文件示例
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.;Database=LeaveApprovalDB;User Id=sa;Password=123456;"
+  }
+}
