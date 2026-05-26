@@ -8,6 +8,7 @@
 
 ## 项目结构
 
+```
 LeaveApproval/
 ├── Component/ # 通用组件层
 │ ├── LeaveApproval.Common # 公共工具类
@@ -29,4 +30,7 @@ LeaveApproval/
 ├── Models/ # 视图模型：页面数据交互
 ├── Views/ # 视图：Razor页面
 └── wwwroot/ # 静态资源：CSS、JS、图片
+```
+
+
 
