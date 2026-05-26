@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "角色关联的用户";
+}
+@model IEnumerable<LeaveApproval.IdentityModel.AppUser>
+<h2>查看【<span class="text-danger">@ViewBag.RoleName</span>】中的用户</h2>
+<p class="float-start subtitle-c">查看指定组下的所有用户</p>
+<p class="float-end"><a asp-action="List">角色列表</a></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>电子邮件</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => user.UserName)</td>
+                <td>@Html.DisplayFor(m => user.Email)</td>
+                <td>
+                    <a asp-action="RemoveRoleUser"
+                       asp-route-rolename="@ViewBag.RoleName"
+                       asp-route-userid="@user.Id">移除用户</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

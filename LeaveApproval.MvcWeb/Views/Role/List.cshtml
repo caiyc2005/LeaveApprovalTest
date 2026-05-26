@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "角色列表";
+}
+@using LeaveApproval.IdentityModel;
+@using LeaveApproval.Common;
+@model PaginatedList<AppRole>
+
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">可在本页执行角色的添加/修改/删除/添加用户/查看用户的功能</p>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <form asp-action="List" method="get" class="d-flex w-form" role="search">
+            <input class="form-control me-2" type="search" name="s" value="@ViewData["keyWord"]" 
+            placeholder="输入角色名称关键字" aria-label="Search"/>
+            <button class="btn btn-danger wd-100" type="submit">搜索</button>
+        </form>
+        <a asp-action="Add" asp-route-returnUrl="@ViewData["returnUrl"]">添加角色</a>
+    </div>
+
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>角色名称</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var role in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m=>role.Name)</td>
+                <td>
+                    @if ((!role.Name!.Equals("Approval")) && (!role.Name.Equals("Admin")))
+                    {
+                        <a asp-controller="Role"
+                           asp-action="Edit"
+                           asp-route-returnUrl="@ViewData["returnUrl"]"
+                           asp-route-id="@role.Id">编辑</a>
+
+                        <a asp-controller="Role"
+                           asp-action="Delete"
+                           asp-route-id="@role.Id"
+                           asp-route-returnUrl="@ViewData["returnUrl"]"
+                           onclick="return confirm('请检查该角色的关联和使用情况后再删除')">删除</a>
+                           
+                    }
+
+                    @Html.ActionLink("添加用户","UserToRole",new{id = role.Id})
+                    <a asp-action="ShowRoleUser" asp-route-name="@role.Name">查看用户</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled":"";
+    var nextDisabled = !Model.HasNextPage ? "disabled":"";
+}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled">
+            <a asp-action="List"
+               asp-route-p="@(Model.PageIndex -1)"
+               asp-route-c="@ViewData["keyWord"]"
+               class="page-link">上一页</a>
+        </li>
+
+        <li class="page-item @nextDisabled">
+            <a asp-action="List"
+               asp-route-p="@(Model.PageIndex + 1)"
+               asp-route-c="@ViewData["keyWord"]"
+               class="page-link">下一页</a>
+        </li>
+    </ul>
+</nav>

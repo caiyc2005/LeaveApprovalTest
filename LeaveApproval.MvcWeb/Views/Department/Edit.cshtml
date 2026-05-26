@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "编辑部门";
+}
+@model DepartmentViewModel
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">请按如下要求修改部门信息</p>
+<form asp-controller="Department" asp-route-returnUrl="@ViewData["returnUrl"]" asp-action="Edit" method="post" class="w-form">
+    <hr />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3 form-check">
+        <input asp-for="IsEnabled"  type="checkbox" class="form-check-control" />
+        <label asp-for="IsEnabled" class="form-check-label"></label>
+    </div>
+
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <a class="btn btn-primary" href="@ViewData["returnUrl"]">返回</a>
+    </div>
+
+</form>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+}

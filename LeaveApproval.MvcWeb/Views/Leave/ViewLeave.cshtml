@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "查看请假单";
+}
+@model LeaveViewModel
+
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">可在本页面查看请假单的详细信息</p>
+
+<div class="w-form">
+    <div class="mb-3 row">
+        <label asp-for="StaffName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StaffName"disabled class="form-control"/>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="ApproverName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="ApproverName" disabled class="form-control"/>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" readonly class="form-control" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="StartDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StartDateTime" type="text" readonly class="form-control-plaintext" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="EndDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="EndDateTime" type="text" readonly class="form-control-plaintext" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" readonly class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    @if (Model.IsApproved)
+    {
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">
+                @Html.DisplayNameFor(m => m.ApprovalResults)
+            </legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input asp-for="ApprovalResults" class="form-check-input" type="radio" value="true" disabled/>
+                    <label class="form-check-label">同意</label>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input asp-for="ApprovalResults" class="form-check-input" type="radio" value="false" disabled />
+                    <label class="form-check-label">拒绝</label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="mb-3 row">
+            <label asp-for="ApprovalComments" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <textarea asp-for="ApprovalComments" readonly class="form-control"></textarea>
+                <span asp-validation-for="ApprovalComments" class="text-danger"></span>
+            </div>
+        </div>  
+    }
+    <div class="mb-3 row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <a href="@ViewData["returnUrl"]" class="btn btn-secondary">返回</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

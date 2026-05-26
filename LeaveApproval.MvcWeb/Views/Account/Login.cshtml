@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "用户登录";
+}
+@model LoginViewModel
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">请在下面输入正确的用户名和密码</p>
+<form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="w-form">
+    <hr/>
+    <div class="mb-3 wd-300">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 wd-300">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <div class="checkbox">
+            <label asp-for="RememberMe">
+                <input asp-for="RememberMe"/>
+                @Html.DisplayNameFor(m => m.RememberMe)
+            </label>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">登录</button>
+    </div>
+
+    <div class="mb-3">
+        <p>
+            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">注册一个新用户？</a>
+        </p>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "填写请假单";
+}
+@model AddLeaveViewModel
+<h3>@ViewData["Title"]</h3>
+<p class="subtitle-c">请按如下要求填写请假申请单</p>
+<form asp-controller="Leave" asp-action="Add" method="post" class="w-form">
+    <hr />
+    <div class="mb-3 row">
+        <label asp-for="StaffName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StaffName" type="text"  class="form-control-plaintext" readonly />
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="ApproverId" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="ApproverId" class="form-select" asp-items="Model.ApproverList">
+                
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" type="text" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="StartDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StartDateTime" type="text" class="form-control" />
+            <span asp-validation-for="StartDateTime" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="EndDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="EndDateTime" type="text" class="form-control" />
+            <span asp-validation-for="EndDateTime" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+    </div>
+
+</form>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "审批请假单";
+}
+@model ApprovalViewModel
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">可在本页面审批请假单</p>
+<form class="w-form" asp-controller="Leave" asp-route-returnUrl="@ViewData["returnUrl"]" asp-action="ExecuteApproval" method="post">
+    <hr />
+
+    <div class="mb-3 row">
+        <label asp-for="ApplyName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="ApplyName" disabled class="form-control-plaintext"/>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" disabled class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="StartDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StartDateTime" disabled class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="EndDateTime" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="EndDateTime" disabled class="form-control" />
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Description" disabled class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">
+            @Html.DisplayNameFor(m=>m.ApprovalResults)
+        </legend>
+
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input asp-for="ApprovalResults" checked class="form-check-input" type="radio" value="true" />
+                <label class="form-check-label">同意</label>
+            </div>
+            <div class="form-check">
+                <input asp-for="ApprovalResults" class="form-check-input" type="radio" value="false" />
+                <label class="form-check-label">拒绝</label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="mb-3 row">
+        <label asp-for="ApprovalComments" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea asp-for="ApprovalComments" class="form-control"></textarea>
+            <span asp-validation-for="ApprovalComments" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">审批</button>
+            <a class="btn btn-secondary" href="@ViewData["returnUrl"]">返回</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

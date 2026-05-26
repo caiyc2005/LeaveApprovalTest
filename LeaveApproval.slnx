@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Component/">
+    <Project Path="LeaveApproval.Common/LeaveApproval.Common.csproj" Id="350e78a5-298d-4eba-a20a-5fed33fc7300" />
+    <Project Path="LeaveApproval.Config/LeaveApproval.Config.csproj" Id="7c2bdb5d-77b9-4951-a3f0-1a4bf61b2211" />
+  </Folder>
+  <Folder Name="/DataModels/">
+    <Project Path="D:/y1/LeaveApproval/LeaveApproval.IdentityModel/LeaveApproval.IdentityModel.csproj" />
+    <Project Path="LeaveApproval.DataModel/LeaveApproval.DataModel.csproj" Id="faeec8e8-67d4-4fde-b890-7b0efe82a192" />
+  </Folder>
+  <Folder Name="/Services/">
+    <Project Path="LeaveApproval.IService/LeaveApproval.IService.csproj" Id="665eadb6-3f3f-4e4a-a56f-17a6e36d93ee" />
+    <Project Path="LeaveApproval.Service/LeaveApproval.Service.csproj" Id="2f728d7a-9c29-41d1-b278-dd0aa066ce7b" />
+    <Project Path="LeaveApproval.ServiceContainer/LeaveApproval.ServiceContainer.csproj" Id="684d5e51-ab76-47ad-95d9-74dd46ab3421" />
+  </Folder>
+  <Folder Name="/Stores/">
+    <Project Path="LeaveApproval.IStore/LeaveApproval.IStore.csproj" Id="d69f8cc9-9373-4ca4-9760-bc66c693912a" />
+    <Project Path="LeaveApproval.Store/LeaveApproval.Store.csproj" Id="2713bedc-afb4-4e5a-8d9a-eb56d376243c" />
+    <Project Path="LeaveApproval.StoreContainer/LeaveApproval.StoreContainer.csproj" Id="3415ff87-dc74-4dd4-9cb0-c0628ebacee8" />
+  </Folder>
+  <Folder Name="/UI/">
+    <Project Path="LeaveApproval.MvcWeb/LeaveApproval.MvcWeb.csproj" Id="fcfa8834-b0fb-4cef-bb68-4eab94d7d78b" />
+  </Folder>
+</Solution>

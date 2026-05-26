@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "编辑员工";
+}
+
+@model StaffViewModel
+<h2>@ViewData["Title"]</h2>
+
+<p class="subtitle-c">请按如下要求修改员工信息</p>
+<form asp-controller="Staff" asp-action="Edit" asp-route-returnUrl="@ViewData["returnUrl"]" method="post" class="w-form">
+    <hr />
+
+    <div class="mb-3 row">
+        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">性别</legend>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input asp-for="Sex" class="form-check-input" type="radio" value="false" />
+                <label class="form-check-label">男</label>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="Sex" class="form-check-input" type="radio" value="true" />
+                <label class="form-check-label">女</label>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="mb-3 row">
+        <label asp-for="Age" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="CardId" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="CardId" class="form-control" />
+            <span asp-validation-for="CardId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="Created" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Created" class="form-control" />
+            <span asp-validation-for="Created" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="DepartmentId" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="DepartmentId" asp-items="Model.DepartmentList" class="form-control"></select>
+            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label asp-for="PositionId" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="PositionId" asp-items="Model.PositionList" class="form-control"></select>
+            <span asp-validation-for="PositionId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <fieldset class="row mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">状态</legend>
+        <div class="col-sm-10">
+            <div class="form-check float-start">
+                <input asp-for="IsEnabled" class="form-check-input" type="radio" value="true" />
+                <label class="form-check-label">在职</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div class="form-check float-start">
+                <input asp-for="IsEnabled" class="form-check-input" type="radio" value="false" />
+                <label class="form-check-label">离职</label>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">保存</button>
+            <a class="btn btn-secondary" href="@Url.Action("List")">返回</a>
+            @* <a class="btn btn-secondary" asp-action="List">返回</a> *@
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+    @* @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert('@Html.Raw(TempData["ErrorMessage"])');
+        </script>
+    } *@
+}

@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "添加职位";
+}
+@model PositionViewModel
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">请按如下要求填写职位信息。</p>
+<form asp-controller="Position" asp-action="Add" method="post" class="w-form">
+    <hr/>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <input asp-for="IsEnabled" checked type="checkbox" class="form-check-input" />
+        <label asp-for="IsEnabled" class="form-check-label"></label>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <a class="btn btn-secondary" href="@ViewData["returnUrl"]">返回</a>
+    </div>
+
+</form>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

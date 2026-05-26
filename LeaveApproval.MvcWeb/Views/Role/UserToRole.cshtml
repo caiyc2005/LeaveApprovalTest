@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "添加用户到角色";
+}
+@model IEnumerable<LeaveApproval.IdentityModel.AppUser>
+<h2>给【<span class="text-danger">@ViewBag.RoleName</span>】角色添加用户</h2>
+<p class="float-start subtitle-c">
+    将本列表中的用户添加到指定的组
+</p>
+<p class="float-end"><a asp-action="List">角色列表</a></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>电子邮件</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => user.UserName)</td>
+                <td>@Html.DisplayFor(m => user.Email)</td>
+                <td>
+                    <a asp-action="AddToRole"
+                       asp-route-userid="@user.Id"
+                       asp-route-roleid="@ViewBag.RoleId"
+                       asp-route-rolename="@ViewBag.RoleName">添加到角色</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

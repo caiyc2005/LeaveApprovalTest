@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Tile"] = "部门列表";
+}
+@using LeaveApproval.DataModel;
+@using LeaveApproval.Common;
+@model PaginatedList<Department>
+
+<h2>@ViewData["Title"]</h2>
+<p class="subtitle-c">可在本页执行添加/修改/删除/查看部门信息</p>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <form asp-action="List" method="get" class="d-flex w-form" role="search">
+            <input class="form-control me-2" type="search" name="s" value="@ViewData["keyWord"]"
+                   placeholder="输入部门名称关键字" aria-label="Search" />
+            <button class="btn btn-danger wd-100" type="submit">搜索</button>
+        </form>
+        <a asp-action="Add" asp-route-returnUrl="@ViewData["returnUrl"]">添加部门</a>
+    </div>
+
+</nav>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>部门名称</th>
+            <th>是否可用</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Name</td>
+                <td>@Html.DisplayFor(d => m.IsEnabled)</td>
+                <td>
+                    <a asp-controller="Department"
+                       asp-action="Edit"
+                       asp-route-returnUrl="@ViewData["returnUrl"]"
+                       asp-route-id="@m.Id">编辑</a>
+
+                    <a asp-controller="Department"
+                       asp-action="Delete"
+                       asp-route-id="@m.Id"
+                       asp-route-returnUrl="@ViewData["returnUrl"]"
+                       onclick="return confirm('确认删除？')">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @prevDisabled">
+            <a asp-action="List"
+               asp-route-p="@(Model.PageIndex - 1)"
+               asp-route-c="@ViewData["keyWord"]"
+               class="page-link">上一页</a>
+        </li>
+
+        <li class="page-item @nextDisabled">
+            <a asp-action="List"
+               asp-route-p="@(Model.PageIndex + 1)"
+               asp-route-c="@ViewData["keyWord"]"
+               class="page-link">下一页</a>
+        </li>
+    </ul>
+</nav>

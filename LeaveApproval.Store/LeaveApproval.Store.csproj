@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeaveApproval.Config\LeaveApproval.Config.csproj" />
+    <ProjectReference Include="..\LeaveApproval.IStore\LeaveApproval.IStore.csproj" />
+  </ItemGroup>
+
+</Project>
