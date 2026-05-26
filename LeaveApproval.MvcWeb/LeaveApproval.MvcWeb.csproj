@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LeaveApproval.Common\LeaveApproval.Common.csproj" />
     <ProjectReference Include="..\LeaveApproval.Config\LeaveApproval.Config.csproj" />
     <ProjectReference Include="..\LeaveApproval.IService\LeaveApproval.IService.csproj" />
