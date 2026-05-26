@@ -204,7 +204,7 @@ namespace LeaveApproval.MvcWeb.Controllers
                 EndDateTime = leave.EndDateTime,
                 ApprovalResults = leave.ApprovalResult,
                 ApprovalComments = leave.ApprovalComments,
-                IsApproved = leave.IsApproved,
+                IsApproved = (bool)leave.IsApproved,
 
             };
             return View(leaveViewModel);
