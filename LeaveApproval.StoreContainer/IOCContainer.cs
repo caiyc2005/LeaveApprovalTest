@@ -29,6 +29,8 @@ namespace LeaveApproval.StoreContainer
             var builder = new ContainerBuilder();
             //注册组件
             builder.RegisterType<DepartmentStore>().As<IDepartmentStore>().InstancePerLifetimeScope();
+            builder.RegisterType<LeaveStore>().As<ILeaveStore>().InstancePerLifetimeScope();
+            builder.RegisterType<StaffStore>().As<IStaffStore>().InstancePerLifetimeScope();
 
             container = builder.Build();
         }
