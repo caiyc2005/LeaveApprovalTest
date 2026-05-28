@@ -22,12 +22,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 //路由
 app.UseRouting();
-//身份验证
-app.UseAuthorization();
+
 //授权
 app.UseAuthentication();
 
+//身份验证
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
