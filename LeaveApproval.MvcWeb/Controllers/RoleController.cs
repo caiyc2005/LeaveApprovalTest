@@ -4,6 +4,7 @@ using LeaveApproval.MvcWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
@@ -145,7 +146,11 @@ namespace LeaveApproval.MvcWeb.Controllers
             //判断角色下是否存在用户，存在用户则不可删除
             if (_userManager.GetUsersInRoleAsync(role.Name).Result.Count > 0)
             {
-                return NotFound();
+                ViewData["ErrorMessage"] = $"无法删除角色【{role.Name}】，该角色下还有 {_userManager.GetUsersInRoleAsync(role.Name).Result.Count} 个用户，请先转移或删除这些用户！";
+                return View("Error",new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                // 不使用LocalRedirect，直接返回List
+                //return RedirectToAction("List");
+                //return NotFound();
             }
             await _roleManager.DeleteAsync(role);
             return LocalRedirect(returnUrl);
