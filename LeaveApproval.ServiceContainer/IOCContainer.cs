@@ -33,6 +33,7 @@ namespace LeaveApproval.ServiceContainer
             builder.RegisterType<DepartmentService>().As<IDepartmentService>().InstancePerLifetimeScope();
             builder.RegisterType<LeaveService>().As<ILeaveService>().InstancePerLifetimeScope();
             builder.RegisterType<StaffService>().As<IStaffService>().InstancePerLifetimeScope();
+            builder.RegisterType<PositionService>().As<IPositionService>().InstancePerLifetimeScope();
 
             container = builder.Build();
         }
