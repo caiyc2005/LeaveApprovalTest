@@ -110,6 +110,7 @@ namespace LeaveApproval.MvcWeb.Controllers
                 Description = leaveViewModel.Description,
                 ApplyId = staff.Id,
                 ApproverId = leaveViewModel.ApproverId,
+                IsApproved = false,
                 CreateDateTime = DateTime.Now
             };
             var result = _leaveService.Create(leave);
