@@ -109,5 +109,46 @@ namespace LeaveApproval.MvcWeb.Controllers
         {
             return View();
         }
+
+
+        /// <summary>
+        /// 重置密码--显示
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult ResetPassword(string returnUrl)
+        {
+            ViewData["returnUrl"] = returnUrl;
+            return View();
+        }
+
+        /// <summary>
+        /// 重置密码--提交
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string? returnUrl)
+        {
+            ViewData["returnUrl"] = returnUrl;
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+            var user = await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User)!);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var r = await _userManager.ResetPasswordAsync(user, code, model.Password);
+            if (r.Succeeded)
+            {
+                ViewData["Message"] = "新密码重置成功。";
+            }
+            return View(model);
+        }
     }
 }
