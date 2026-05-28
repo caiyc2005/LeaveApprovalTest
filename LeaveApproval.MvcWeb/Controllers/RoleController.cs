@@ -1,11 +1,13 @@
-﻿using LeaveApproval.IdentityModel;
+﻿using LeaveApproval.Common;
+using LeaveApproval.IdentityModel;
 using LeaveApproval.MvcWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using LeaveApproval.Common;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
 

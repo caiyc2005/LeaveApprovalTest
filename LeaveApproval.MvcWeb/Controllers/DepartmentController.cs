@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DepartmentController : Controller
     {
         private IDepartmentService _departmentService = IOCContainer.Resolve<IDepartmentService>();
