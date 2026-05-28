@@ -159,9 +159,11 @@ namespace LeaveApproval.MvcWeb.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            //return Redirect("/Home/Index");
             return LocalRedirect("~/");
         }
     }
