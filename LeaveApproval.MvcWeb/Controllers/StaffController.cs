@@ -182,9 +182,10 @@ namespace LeaveApproval.MvcWeb.Controllers
                 DepartmentId = staff.DepartmentId,
                 PositionId = staff.PositionId,
                 IsEnabled = staff.IsEnabled,
-                IsApprover = staff.IsApprover,
+                //IsApprover = staff.IsApprover,
 
             };
+            Console.WriteLine("【传出】staffViewModel=" + staffViewModel.IsApprover);
             return View(staffViewModel);
         }
 
@@ -216,7 +217,8 @@ namespace LeaveApproval.MvcWeb.Controllers
             staff.IsEnabled = (bool)staffViewModel.IsEnabled;
             staff.DepartmentId = staffViewModel.DepartmentId;
             staff.PositionId = staffViewModel.PositionId;
-            staff.IsApprover = staffViewModel.IsApprover;
+            //staff.IsApprover = staffViewModel.IsApprover;
+            Console.WriteLine("【传入】staffViewModel=" + staffViewModel.IsApprover);
             var r = _staffService.Update(staff);
             if (r)
             {
