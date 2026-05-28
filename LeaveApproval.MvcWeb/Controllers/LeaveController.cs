@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
-    [Authorize]
+    [Authorize()]
     public class LeaveController : Controller
     {
         private ILeaveService _leaveService = IOCContainer.Resolve<ILeaveService>();
