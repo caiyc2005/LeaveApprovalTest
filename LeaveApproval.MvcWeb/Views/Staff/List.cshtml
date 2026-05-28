@@ -45,7 +45,8 @@
                 <td>@item.Age</td>
                 <td>@if (item.Department != null) { @item.Department.Name}</td>
                 <td>@if (item.Position != null) { @item.Position.Name}</td>
-                <td>@item.Created.ToShortDateString()</td>
+                <td>@(item.Created?.ToShortDateString() ?? "")</td>
+                @* <td>@item.Created.ToShortDateString()</td> *@
                 <td>@(item.IsEnabled ? "在职":"离职")</td>
                 <td>@(item.IsApprover ? "是":"否")</td>
                 <td>
