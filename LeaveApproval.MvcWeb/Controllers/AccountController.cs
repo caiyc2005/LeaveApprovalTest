@@ -150,5 +150,18 @@ namespace LeaveApproval.MvcWeb.Controllers
             }
             return View(model);
         }
+
+
+        /// <summary>
+        /// 注销用户
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return LocalRedirect("~/");
+        }
     }
 }
