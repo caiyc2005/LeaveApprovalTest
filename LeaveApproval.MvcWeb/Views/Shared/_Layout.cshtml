@@ -40,8 +40,8 @@
                         }
                         @if (User.IsInRole("Admin"))
                         {
-                            <li>
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-target="dropdown" aria-expanded="false">管理</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">管理</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a asp-controller="Department" asp-action="List" class="dropdown-item">部门管理</a></li>
                                     <li><a asp-controller="Position" asp-action="List" class="dropdown-item">职位管理</a></li>
