@@ -7,6 +7,7 @@ using LeaveApproval.ServiceContainer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
@@ -14,6 +15,7 @@ namespace LeaveApproval.MvcWeb.Controllers
     public class DepartmentController : Controller
     {
         private IDepartmentService _departmentService = IOCContainer.Resolve<IDepartmentService>();
+        private IStaffService _staffService = IOCContainer.Resolve<IStaffService>();
         public IActionResult Index()
         {
             return View();
@@ -148,10 +150,31 @@ namespace LeaveApproval.MvcWeb.Controllers
             {
                 return NotFound();
             }
+            var staff = _staffService.Query(s => s.DepartmentId == department.Id);
+            if (staff.Count() > 0) //有员工数据关联，不可删除
+            {
+                return RedirectToAction("Error", new { id = "Delete", returnUrl = returnUrl });
+            }
             _departmentService.Delete(department);
             return LocalRedirect(returnUrl) ;
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(string id, string returnUrl)
+        {
+
+            ViewData["returnUrl"] = returnUrl;
+            switch (id)
+            {
+                case "Delete":
+                    ViewData["ErrorMessage"] = "无法删除部门，请先删除关联的员工数据！";
+                    break;
+                default:
+                    ViewData["ErrorMessage"] = "发生未知错误！";
+                    break;
+            }
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
 
         public IActionResult List()
         {
