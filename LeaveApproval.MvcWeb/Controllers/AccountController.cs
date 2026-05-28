@@ -6,6 +6,7 @@ using LeaveApproval.MvcWeb.Models;
 
 namespace LeaveApproval.MvcWeb.Controllers
 {
+    [Authorize()]
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
