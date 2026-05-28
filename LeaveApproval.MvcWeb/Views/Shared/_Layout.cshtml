@@ -38,6 +38,18 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Leave" asp-action="Approval">我的审批</a>
                             </li>
                         }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-target="dropdown" aria-expanded="false">管理</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a asp-controller="Department" asp-action="List" class="dropdown-item">部门管理</a></li>
+                                    <li><a asp-controller="Position" asp-action="List" class="dropdown-item">职位管理</a></li>
+                                    <li><a asp-controller="Role" asp-action="List" class="dropdown-item">角色管理</a></li>
+                                    <li><a asp-controller="Staff" asp-action="List" class="dropdown-item">员工管理</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
